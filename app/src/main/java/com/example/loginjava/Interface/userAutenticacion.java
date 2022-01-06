@@ -9,10 +9,8 @@ import retrofit2.http.Headers;
 import retrofit2.http.Path;
 
 public interface userAutenticacion {
-    @Headers({
-            "usr:henry","pwd:12345"
-    })
+
     @GET("app")
-    Call<usuarioGet> getUsuario();
+    Call<usuarioGet> getUsuario(@Header("usr") String usr,@Header("pwd") String pwd);
 
 }

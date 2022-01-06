@@ -1,14 +1,15 @@
 package com.example.loginjava;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.loginjava.Interface.userAutenticacion;
 import com.example.loginjava.model.usuarioGet;
@@ -25,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     EditText cajaNombre;
     EditText cajaContra;
+    Button button;
     private TextView textViewResultado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +36,15 @@ public class MainActivity extends AppCompatActivity {
         cajaNombre = findViewById(R.id.cajaName);
         cajaContra = findViewById(R.id.cajaPassword);
         textViewResultado = findViewById(R.id.txtResultado);
-        getUsuario();
+        button = findViewById(R.id.button);
+
+        button.setOnClickListener(view -> getUsuarioRetrofit());
+
     }
 
-    public void btnLogin(View view){
+    private void getUsuarioRetrofit() {
+
+
         String cNombre = cajaNombre.getText().toString();
         String cContra = cajaContra.getText().toString();
 
@@ -47,68 +55,67 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(this, "Email no válido", Toast.LENGTH_SHORT).show();
         }**/
 
-        if(cNombre.isEmpty()){
+        if (cNombre.isEmpty()) {
             cajaNombre.setError("El campo está vacío");
+            return;
         }
-        else if(cContra.isEmpty()){
+
+        if (cContra.isEmpty()) {
             cajaContra.setError("El campo está vacío");
-        }
-        else{
-            if(cNombre.equals("henry") && cContra.equals("123") ){
-                Toast.makeText(this, "Bienvenido!", Toast.LENGTH_SHORT).show();
-                Intent oLoginIntent = new Intent(this,PrincipalPantalla.class);
-                oLoginIntent.putExtra("dato",cNombre);
-
-                startActivity(oLoginIntent);
-            }else{
-                Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show();
-            }
+            return;
         }
 
 
-
-
-    }
-
-
-    //Metodo del API
-    private void getUsuario(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://g2c0586b3c2559e-pdc.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/auth/")
                 .addConverterFactory(GsonConverterFactory.create())
-
                 .build();
         userAutenticacion oUserAutentication = retrofit.create(userAutenticacion.class);
-        Call<usuarioGet> call = oUserAutentication.getUsuario();
+        Call<usuarioGet> call = oUserAutentication.getUsuario(cNombre, cContra);
         call.enqueue(new Callback<usuarioGet>() {
             @Override
             public void onResponse(Call<usuarioGet> call, Response<usuarioGet> response) {
-                if(!response.isSuccessful()){
-                    textViewResultado.setText("Codigo error: "+response.code());
+                if (!response.isSuccessful()) {
+                    Log.e("CALL_API", String.valueOf(response.code()));
                     return;
                 }
 
-                Toast.makeText(getApplicationContext(), "se ejecuto correctamente", Toast.LENGTH_SHORT).show();
                 usuarioGet obtenerUsuario = response.body();
-                String content = "";
 
-                    content = "id"+obtenerUsuario.getId();
-                    content = "usuario"+obtenerUsuario.getUsuario();
-                    content = "tipo"+obtenerUsuario.getTipo();
-                    content = "estado"+obtenerUsuario.getEstado();
-                textViewResultado.append(content);
+
+                assert obtenerUsuario != null;
+                Log.i("CALL_API", String.valueOf(obtenerUsuario.getUsuario()));
+                Log.i("CALL_API", String.valueOf(obtenerUsuario.getId()));
+                Log.i("CALL_API", String.valueOf(obtenerUsuario.getEstado()));
+                Log.i("CALL_API", String.valueOf(obtenerUsuario.getTipo()));
+
+
+                Intent intent = new Intent(getApplicationContext(), PrincipalPantalla.class);
+                intent.putExtra("usuario", obtenerUsuario.getUsuario());
+                intent.putExtra("id", obtenerUsuario.getId());
+                intent.putExtra("estado", obtenerUsuario.getEstado());
+                intent.putExtra("tipo", obtenerUsuario.getTipo());
+                startActivity(intent);
 
             }
 
             @Override
             public void onFailure(Call<usuarioGet> call, Throwable t) {
-
+                Log.e("CALL_API", t.getMessage());
             }
         });
+
     }
 
+
+    public void btnLogin(View view) {
+
+
+    }
+
+
     //Metodo para validar Email
-    private boolean validarEmail(String email){
+    private boolean validarEmail(String email) {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         return pattern.matcher(email).matches();
     }

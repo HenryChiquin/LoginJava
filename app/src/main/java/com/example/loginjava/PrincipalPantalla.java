@@ -2,6 +2,7 @@ package com.example.loginjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -17,6 +18,13 @@ public class PrincipalPantalla extends AppCompatActivity {
 
         String dato = getIntent().getStringExtra("dato");
         textViewUsuario.setText("Bienvenido "+dato +"!");
+
+
+        Intent intent = getIntent();
+        String usuario = intent.getStringExtra("usuario");
+        String id = intent.getStringExtra("id");
+
+
     }
 
 
