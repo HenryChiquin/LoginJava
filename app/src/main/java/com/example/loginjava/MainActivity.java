@@ -7,19 +7,13 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.loginjava.Api.apiPlanetas;
-import com.example.loginjava.Api.apiUsuario;
 import com.example.loginjava.Api.serviceApi;
 
-import com.example.loginjava.Util.conectionRetrofit;
-import com.example.loginjava.model.Planetas;
 import com.example.loginjava.model.usuarioGet;
 
-import java.util.List;
 import java.util.regex.Pattern;
 
 import retrofit2.Call;
@@ -80,18 +74,12 @@ public class MainActivity extends AppCompatActivity {
 
         String cNombre = cajaNombre.getText().toString();
         String cContra = cajaContra.getText().toString();
-/*
-        String urlRuta = "https://g2c0586b3c2559e-pdc.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/auth/";
 
-        apiUsuario oApiUsuario = conectionRetrofit.getConection(urlRuta).create(apiUsuario.class);
-**/
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://g2c0586b3c2559e-pdc.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/auth/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
-
-        apiUsuario oApiUser = retrofit.create(apiUsuario.class);
+        serviceApi oApiUser = retrofit.create(serviceApi.class);
 
         Call<usuarioGet> call = oApiUser.getUsuario(cNombre, cContra);
         call.enqueue(new Callback<usuarioGet>() {
@@ -113,9 +101,7 @@ public class MainActivity extends AppCompatActivity {
                              intent.putExtra("estado", obtenerUsuario.getEstado());
                              intent.putExtra("tipo", obtenerUsuario.getTipo());
                              startActivity(intent);
-
                          }
-
                          @Override
                          public void onFailure(Call<usuarioGet> call, Throwable t) {
                              Log.e("CALL_API", t.getMessage());

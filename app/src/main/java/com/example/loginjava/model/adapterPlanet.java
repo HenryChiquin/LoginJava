@@ -12,10 +12,15 @@ import android.widget.TextView;
 
 
 import com.example.loginjava.R;
+import com.example.loginjava.database.AppDatabase;
+import com.example.loginjava.database.entity.tUniverso;
+import com.example.loginjava.repository.universoRepository;
+import com.example.loginjava.repository.universoRepositoryImpl;
 import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class adapterPlanet extends BaseAdapter {
 
@@ -51,26 +56,32 @@ public class adapterPlanet extends BaseAdapter {
 
     //Create view holder innter class
     private class ViewHolder{
-        TextView idtxt, nombretxt, tipotxt;
+        TextView idtxt, nombretxt, categoriatxt;
         ImageView imagenTv;
     }
     @Override
     public View getView(int position, View view, ViewGroup parent)
     {
+        //Instanciar base de datos
+        AppDatabase db = AppDatabase.getInstance(this.context);
+        //Instanciar repositorio
+        universoRepository repo = new universoRepositoryImpl(db.uniiversoDao());
+
+
         ViewHolder viewHolder = new ViewHolder();
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         view = layoutInflater.inflate(layout,null);
         //id type casting
         viewHolder.idtxt = view.findViewById(R.id.idtxt);
         viewHolder.nombretxt = view.findViewById(R.id.nombretxt);
-        viewHolder.tipotxt = view.findViewById(R.id.tipotxt);
+        viewHolder.categoriatxt = view.findViewById(R.id.categoriatxt);
         viewHolder.imagenTv = view.findViewById(R.id.iViewImagenPlanet);
 
         //setPosition
         Planetas modelPlanetas = modelArrayList.get(position);
-        viewHolder.idtxt.setText("id: "+modelPlanetas.getId()+"\n");
-        viewHolder.nombretxt.setText("nombre: "+modelPlanetas.getNombre()+"\n");
-        viewHolder.tipotxt.setText("tipo: "+modelPlanetas.getTipo()+"\n");
+        viewHolder.idtxt.setText("No.: "+modelPlanetas.getId()+"\n");
+        viewHolder.nombretxt.setText("Nombre: "+modelPlanetas.getNombre()+"\n");
+
 
         Picasso.with(context.getApplicationContext())
                 .load(modelPlanetas.getImagen())
@@ -80,9 +91,15 @@ public class adapterPlanet extends BaseAdapter {
                 .into(viewHolder.imagenTv);
 
 
-        Universo oUniverso = new Universo();
-        oUniverso.getId();
-        Log.e("Erorr CALL_API UNIVERSO en onResponse: ", String.valueOf(oUniverso.getId()));
+        List<tUniverso> ltUniverso = repo.getAllUniverso();
+        for(tUniverso x: ltUniverso){
+
+            if(modelPlanetas.getTipo() == x.getId()){
+                viewHolder.categoriatxt.setText("Categoría: "+x.getNombre()+"\n");
+            }
+
+        }
+
         return view;
     }
 
