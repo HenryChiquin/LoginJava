@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.example.loginjava"
@@ -33,6 +33,15 @@ android {
 }
 
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:29.0.3')
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // [START gradle_firebase_ui_auth]
+    implementation "com.firebaseui:firebase-ui-auth:8.0.0"
+
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+
     def room_version = "2.4.0"
 
     implementation "androidx.room:room-runtime:$room_version"
@@ -62,3 +71,4 @@ dependencies {
 
 
 }
+apply plugin: 'com.google.gms.google-services'

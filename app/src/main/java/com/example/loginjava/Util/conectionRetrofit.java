@@ -14,10 +14,4 @@ public class conectionRetrofit {
     }
 
 
-    public static Retrofit getConectionLogin(String urlApi){
-        if(retrofit == null){
-            retrofit = new Retrofit.Builder().baseUrl(urlApi).addConverterFactory(GsonConverterFactory.create()).build();
-        }
-        return retrofit;
-    }
 }

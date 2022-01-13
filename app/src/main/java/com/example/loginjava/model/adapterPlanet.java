@@ -28,14 +28,12 @@ public class adapterPlanet extends BaseAdapter {
     private   ArrayList<Planetas> modelArrayList;
     private Context context;
     private int layout;
-    //generate constructor
-
+    //generar constructor
     public adapterPlanet(ArrayList<Planetas> modelArrayList, Context context, int layout) {
         this.modelArrayList = modelArrayList;
         this.context = context;
         this.layout = layout;
     }
-
 
     @Override
     public int getCount()
@@ -67,7 +65,7 @@ public class adapterPlanet extends BaseAdapter {
         //Instanciar repositorio
         universoRepository repo = new universoRepositoryImpl(db.uniiversoDao());
 
-
+        //Creacion de view
         ViewHolder viewHolder = new ViewHolder();
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         view = layoutInflater.inflate(layout,null);
@@ -77,19 +75,17 @@ public class adapterPlanet extends BaseAdapter {
         viewHolder.categoriatxt = view.findViewById(R.id.categoriatxt);
         viewHolder.imagenTv = view.findViewById(R.id.iViewImagenPlanet);
 
-        //setPosition
+        //agregar datos en posicion
         Planetas modelPlanetas = modelArrayList.get(position);
         viewHolder.idtxt.setText("No.: "+modelPlanetas.getId()+"\n");
         viewHolder.nombretxt.setText("Nombre: "+modelPlanetas.getNombre()+"\n");
 
-
         Picasso.with(context.getApplicationContext())
-                .load(modelPlanetas.getImagen())
+                .load(modelPlanetas.getImagen())//URL DE LA IMAGEN
                 .error(R.mipmap.ic_launcher)
                 .fit()
                 .centerInside()
                 .into(viewHolder.imagenTv);
-
 
         List<tUniverso> ltUniverso = repo.getAllUniverso();
         for(tUniverso x: ltUniverso){
@@ -97,7 +93,6 @@ public class adapterPlanet extends BaseAdapter {
             if(modelPlanetas.getTipo() == x.getId()){
                 viewHolder.categoriatxt.setText("Categoría: "+x.getNombre()+"\n");
             }
-
         }
 
         return view;

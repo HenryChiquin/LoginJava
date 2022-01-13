@@ -19,6 +19,8 @@ public interface serviceApi {
     @GET("categoria")
     Call<listadoUniverse> getUniverso();
 
+
     @GET("app")
     Call<usuarioGet> getUsuario(@Header("usr") String usr, @Header("pwd") String pwd);
+
 }

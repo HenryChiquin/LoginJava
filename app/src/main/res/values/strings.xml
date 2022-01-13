@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LoginJava</string>
+    <string name="app_name">LoginIn</string>
     <string name="botonLogin">Login</string>
     <string name="tv1">Primer Activity</string>
     <string name="title_activity_drawer_inicio">DrawerInicio</string>
