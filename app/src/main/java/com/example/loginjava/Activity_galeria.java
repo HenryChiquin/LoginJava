@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -18,15 +19,23 @@ import java.io.FileInputStream;
 public class Activity_galeria extends AppCompatActivity {
     String []archivos;
     RecyclerView rvGaleria;
+    private ImageView imgBTNregresargallery;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_galeria);
         archivos=fileList();
         rvGaleria = findViewById(R.id.rvGaleria);
+        imgBTNregresargallery = findViewById(R.id.imgbtnRegresarGallery);
+        imgBTNregresargallery.setOnClickListener(view -> {
+            onBackPressed();
+        });
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvGaleria.setLayoutManager(linearLayoutManager);
         rvGaleria.setAdapter(new AdaptadorFotos());
+
     }
 
     private class AdaptadorFotos extends RecyclerView.Adapter<AdaptadorFotos.adaptadorfotosholder> {

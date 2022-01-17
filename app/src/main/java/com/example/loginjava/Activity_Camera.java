@@ -11,10 +11,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -26,8 +29,10 @@ import java.util.Date;
 
 public class Activity_Camera extends AppCompatActivity {
 
-    private ImageButton imgBtnCamera,imgBtnGaleria;
+    private ImageButton imgBtnCamera,imgBtnGaleria,btnregresar;
     private ImageView imgViewPrevio;
+    String rutaImagen;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +40,23 @@ public class Activity_Camera extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
         imgBtnCamera = findViewById(R.id.imgbtnCamera);
         imgBtnGaleria = findViewById(R.id.imgBtnGaleria);
-        imgViewPrevio =  findViewById(R.id.imgViewPrevio);
+        imgViewPrevio = findViewById(R.id.imgViewPrevio);
+
+        btnregresar = findViewById(R.id.imgBtnRegresar);
+        btnregresar.setOnClickListener(view -> {
+            onBackPressed();
+        });
+
 
         imgBtnCamera.setOnClickListener(View -> tomarFoto());
         imgBtnGaleria.setOnClickListener(View -> galeriaFotos());
+
     }
 
     final int IMAGE_CAPTURE = 1;
     private void tomarFoto() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(takePictureIntent, IMAGE_CAPTURE);
-
     }
 
     @Override
@@ -64,6 +75,7 @@ public class Activity_Camera extends AppCompatActivity {
             }
         }
     }
+
 
     private String crearNombreArchivoJPEG() {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

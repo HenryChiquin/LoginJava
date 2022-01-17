@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -21,6 +22,7 @@ public class Activity_registro extends AppCompatActivity {
     private TextInputEditText emailtxt, passwordtxt;
     private Button btnRegistrarUsuario;
     private FirebaseAuth mAuth;
+    private ImageView imgCloseRegistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +31,13 @@ public class Activity_registro extends AppCompatActivity {
         emailtxt = findViewById(R.id.emailTxt);
         passwordtxt = findViewById(R.id.passwordTxt);
         btnRegistrarUsuario = findViewById(R.id.btnRegistrarUser);
-
+        imgCloseRegistro = findViewById(R.id.imgViewCloseRegistro);
         mAuth = FirebaseAuth.getInstance();
         btnRegistrarUsuario.setOnClickListener(View -> createAccount());
+        imgCloseRegistro.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+            FirebaseAuth.getInstance().signOut();
+        });
 
     }
 

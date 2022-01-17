@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/drawable_background">
 
     <TextView
         android:id="@+id/txtNombreFoto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold" />
+        android:layout_height="57dp"
+        android:textColor="#222020"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="Foto:" />
 
     <ImageView
         android:id="@+id/imgViewFoto"
         android:layout_width="match_parent"
-        android:layout_height="343dp"
+        android:layout_height="207dp"
         app:srcCompat="@drawable/ic_menu_gallery" />
 </LinearLayout>

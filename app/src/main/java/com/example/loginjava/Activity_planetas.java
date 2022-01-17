@@ -2,8 +2,10 @@ package com.example.loginjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.loginjava.Api.serviceApi;
@@ -27,6 +29,7 @@ import retrofit2.Response;
 public class Activity_planetas extends AppCompatActivity {
 
     private ListView lv1Planetas;
+    private ImageView imgClosePlanetas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,12 @@ public class Activity_planetas extends AppCompatActivity {
         setContentView(R.layout.activity_planetas);
         //List view CAJA
         lv1Planetas = findViewById(R.id.lvMenuPrincipal);
+        imgClosePlanetas = findViewById(R.id.imgCloseUniverso);
+        imgClosePlanetas.setOnClickListener(view -> {
+            onBackPressed();
+        });
         listViewPlanetas();
+
     }
 
     //Funcion listar Planetas

@@ -7,6 +7,20 @@
     android:background="@drawable/drawable_background"
     tools:context=".Activity_planetas">
 
+    <ImageView
+        android:id="@+id/imgCloseUniverso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_baseline_chevron_left_24" />
+
     <ListView
         android:id="@+id/lvMenuPrincipal"
         android:layout_width="394dp"
@@ -24,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PLANETAS"
-        android:textColor="#0031AE"
+        android:textColor="#6246e9"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/lvMenuPrincipal"

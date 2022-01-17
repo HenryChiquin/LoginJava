@@ -2,6 +2,7 @@ package com.example.loginjava;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,7 +12,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,63 +31,50 @@ import java.util.List;
 public class Activity_principalpantalla extends AppCompatActivity {
 
     TextView textViewUsuario,emailTxt;
-    private Button btnCerrarsesion;
+    private Switch swCerrarSesion;
+
+    private ImageButton imgBtnOffSesion;
     private ListView lvMenuPrincipal;
     private GoogleApiClient googleApiClient;
 
+    private CardView cardViewUniverso,cardViewMaps,cardViewCamera;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principalpantalla);
+        cardViewUniverso = findViewById(R.id.cardViewUniverso);
+        cardViewMaps = findViewById(R.id.cardViewMaps);
+        cardViewCamera = findViewById(R.id.cardViewCamera);
+        swCerrarSesion = findViewById(R.id.swCerrarSesion);
+
         textViewUsuario = findViewById(R.id.tvUsuario);
         emailTxt = findViewById(R.id.emailtxt);
-        btnCerrarsesion = findViewById(R.id.btnCerrarSesion);
-        lvMenuPrincipal = findViewById(R.id.lvMenuPrincipal);
 
-        btnCerrarsesion.setOnClickListener(View ->cerrarSesion());
-        //List view CAJA
-        ArrayAdapter arrayAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1,listaOpciones());
-        lvMenuPrincipal.setAdapter(arrayAdapter);
-        menuOpciones();
+        cardViewUniverso.setOnClickListener(View -> getUniverso());
+        cardViewMaps.setOnClickListener(View -> getMaps());
+        cardViewCamera.setOnClickListener(View -> getCamera());
         getUserProfile();
     }
 
-    //Menu de opciones
-    public void menuOpciones(){
-        lvMenuPrincipal.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                switch(position){
-                    case 0:
-                        Intent intPlanetas = new Intent(getApplicationContext(), Activity_planetas.class);
-                        startActivity(intPlanetas);
-                        break;
-                    case 1:
-                        Intent intGogleMaps = new Intent(getApplicationContext(), Activity_googlemaps.class);
-                        startActivity(intGogleMaps);
-                        break;
-                    case 2:
-                        Intent intCamera = new Intent(getApplicationContext(), Activity_Camera.class);
-                        startActivity(intCamera);
-                        break;
-                    default:
-                        Toast.makeText(getApplicationContext(), "Opcion incorrecto", Toast.LENGTH_SHORT).show();
-                        break;
-                }
-            }
-        });
+
+    public void getUniverso(){
+        Intent intPlanetas = new Intent(getApplicationContext(), Activity_planetas.class);
+        startActivity(intPlanetas);
     }
+    public void getMaps(){
+        Intent intGogleMaps = new Intent(getApplicationContext(), Activity_googlemaps.class);
+        startActivity(intGogleMaps);
+    }
+    public void getCamera(){
+        Intent intCamera = new Intent(getApplicationContext(), Activity_Camera.class);
+        startActivity(intCamera);
+    }
+
     public void getUserProfile() {
-        // [START get_user_profile]
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            // Name, email address, and profile photo Url
             textViewUsuario.setText(user.getDisplayName());
             emailTxt.setText(user.getEmail());
-            Uri photoUrl = user.getPhotoUrl();
-            // Check if user's email is verified
-            boolean emailVerified = user.isEmailVerified();
-            String uid = user.getUid();
         }
 
     }
@@ -94,12 +85,13 @@ public class Activity_principalpantalla extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(), AuthActivity.class));
     }
-    public static List listaOpciones(){
-        List<String> list = new ArrayList<>();
-        list.add("Planetas");
-        list.add("Google Maps");
-        list.add("Camera");
-        return list;
-    }
 
+    public void onCerrarSesion(View view) {
+        if(view.getId() == R.id.swCerrarSesion){
+            if(!swCerrarSesion.isChecked()){
+                cerrarSesion();
+                return;
+            }
+        }
+    }
 }
