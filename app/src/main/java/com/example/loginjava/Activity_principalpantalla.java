@@ -32,7 +32,7 @@ public class Activity_principalpantalla extends AppCompatActivity {
 
     TextView textViewUsuario,emailTxt;
     private Switch swCerrarSesion;
-
+    private ImageView imgVCerrrSesion;
     private ImageButton imgBtnOffSesion;
     private ListView lvMenuPrincipal;
     private GoogleApiClient googleApiClient;
@@ -45,15 +45,17 @@ public class Activity_principalpantalla extends AppCompatActivity {
         cardViewUniverso = findViewById(R.id.cardViewUniverso);
         cardViewMaps = findViewById(R.id.cardViewMaps);
         cardViewCamera = findViewById(R.id.cardViewCamera);
-        swCerrarSesion = findViewById(R.id.swCerrarSesion);
+        imgVCerrrSesion = findViewById(R.id.imageViewCerrarSesion);
 
         textViewUsuario = findViewById(R.id.tvUsuario);
         emailTxt = findViewById(R.id.emailtxt);
+
 
         cardViewUniverso.setOnClickListener(View -> getUniverso());
         cardViewMaps.setOnClickListener(View -> getMaps());
         cardViewCamera.setOnClickListener(View -> getCamera());
         getUserProfile();
+        imgVCerrrSesion.setOnClickListener(view -> cerrarSesion());
     }
 
 
@@ -86,12 +88,5 @@ public class Activity_principalpantalla extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), AuthActivity.class));
     }
 
-    public void onCerrarSesion(View view) {
-        if(view.getId() == R.id.swCerrarSesion){
-            if(!swCerrarSesion.isChecked()){
-                cerrarSesion();
-                return;
-            }
-        }
-    }
+
 }
