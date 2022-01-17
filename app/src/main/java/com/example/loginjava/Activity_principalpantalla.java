@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class PrincipalPantalla extends AppCompatActivity {
+public class Activity_principalpantalla extends AppCompatActivity {
 
     TextView textViewUsuario,emailTxt;
     private Button btnCerrarsesion;
@@ -35,7 +34,7 @@ public class PrincipalPantalla extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal_pantalla);
+        setContentView(R.layout.activity_principalpantalla);
         textViewUsuario = findViewById(R.id.tvUsuario);
         emailTxt = findViewById(R.id.emailtxt);
         btnCerrarsesion = findViewById(R.id.btnCerrarSesion);
@@ -62,6 +61,10 @@ public class PrincipalPantalla extends AppCompatActivity {
                     case 1:
                         Intent intGogleMaps = new Intent(getApplicationContext(), Activity_googlemaps.class);
                         startActivity(intGogleMaps);
+                        break;
+                    case 2:
+                        Intent intCamera = new Intent(getApplicationContext(), Activity_Camera.class);
+                        startActivity(intCamera);
                         break;
                     default:
                         Toast.makeText(getApplicationContext(), "Opcion incorrecto", Toast.LENGTH_SHORT).show();
@@ -95,6 +98,7 @@ public class PrincipalPantalla extends AppCompatActivity {
         List<String> list = new ArrayList<>();
         list.add("Planetas");
         list.add("Google Maps");
+        list.add("Camera");
         return list;
     }
 

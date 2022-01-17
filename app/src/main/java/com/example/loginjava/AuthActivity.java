@@ -3,32 +3,25 @@ package com.example.loginjava;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.loginjava.Api.serviceApi;
 
 import com.example.loginjava.model.usuarioGet;
 
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiActivity;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,8 +38,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AuthActivity extends AppCompatActivity {
 
     private static final String TAG = "AuthActivity";
-    EditText cajaNombre;
-    EditText cajaContra;
+    TextInputEditText cajaNombre,cajaContra;
+
+
     Button btnAcceder, btnRegistrar;
     SignInButton signInButton;
 
@@ -63,7 +57,7 @@ public class AuthActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
         if(user!=null){
-            Intent intent = new Intent(getApplicationContext(),PrincipalPantalla.class);
+            Intent intent = new Intent(getApplicationContext(), Activity_principalpantalla.class);
             startActivity(intent);
         }
     }
@@ -73,7 +67,7 @@ public class AuthActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-        cajaNombre = findViewById(R.id.cajaName);
+        cajaNombre = findViewById(R.id.emailTxt);
         cajaContra = findViewById(R.id.cajaPassword);
         btnAcceder = findViewById(R.id.btnAcceder);
         btnRegistrar = findViewById(R.id.btnRegistrar);
@@ -132,7 +126,7 @@ public class AuthActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"¡Bienvenido!",Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             if(user!=null){
-                                Intent intent = new Intent(getApplicationContext(),PrincipalPantalla.class);
+                                Intent intent = new Intent(getApplicationContext(), Activity_principalpantalla.class);
                                 startActivity(intent);
                                 return;
                             }
@@ -166,7 +160,7 @@ public class AuthActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         Toast.makeText(getApplicationContext(),"¡Bienvenido!",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AuthActivity.this, PrincipalPantalla.class));
+                        startActivity(new Intent(AuthActivity.this, Activity_principalpantalla.class));
                     } else {
                         // If sign in fails, display a message to the user.
                         userLoginAutentication();
@@ -203,7 +197,7 @@ public class AuthActivity extends AppCompatActivity {
                  }
                  usuarioGet obtenerUsuario = response.body();
                  assert obtenerUsuario != null;
-                 Intent intent = new Intent(getApplicationContext(), PrincipalPantalla.class);
+                 Intent intent = new Intent(getApplicationContext(), Activity_principalpantalla.class);
                  intent.putExtra("usuario", obtenerUsuario.getUsuario());
                  intent.putExtra("id", obtenerUsuario.getId());
                  intent.putExtra("estado", obtenerUsuario.getEstado());

@@ -6,19 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
 public class Activity_registro extends AppCompatActivity {
 
-    private EditText emailtxt, passwordtxt;
+    private TextInputEditText emailtxt, passwordtxt;
     private Button btnRegistrarUsuario;
     private FirebaseAuth mAuth;
 
@@ -26,7 +26,7 @@ public class Activity_registro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-        emailtxt = findViewById(R.id.nombreTxt);
+        emailtxt = findViewById(R.id.emailTxt);
         passwordtxt = findViewById(R.id.passwordTxt);
         btnRegistrarUsuario = findViewById(R.id.btnRegistrarUser);
 
