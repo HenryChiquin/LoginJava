@@ -197,7 +197,7 @@ public class AuthActivity extends AppCompatActivity {
                  }
                  usuarioGet obtenerUsuario = response.body();
                  assert obtenerUsuario != null;
-                 Intent intent = new Intent(getApplicationContext(), Activity_principalpantalla.class);
+                 Intent intent = new Intent(getApplicationContext(), Activity_principalpantalla.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                  intent.putExtra("usuario", obtenerUsuario.getUsuario());
                  intent.putExtra("id", obtenerUsuario.getId());
                  intent.putExtra("estado", obtenerUsuario.getEstado());

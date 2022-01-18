@@ -60,7 +60,7 @@ public class Activity_registro extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(),"Se registró correctamente.",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+                            startActivity(new Intent(getApplicationContext(), AuthActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             FirebaseAuth.getInstance().signOut();
 
                         } else {

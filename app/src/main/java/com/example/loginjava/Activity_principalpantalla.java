@@ -85,7 +85,7 @@ public class Activity_principalpantalla extends AppCompatActivity {
         emailTxt.setText("");
         Toast.makeText(getApplicationContext(), "Sesión cerrada", Toast.LENGTH_SHORT).show();
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+        startActivity(new Intent(getApplicationContext(), AuthActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
 
 

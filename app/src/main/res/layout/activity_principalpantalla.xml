@@ -22,8 +22,11 @@
         android:id="@+id/imageViewCerrarSesion"
         android:layout_width="31dp"
         android:layout_height="34dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginLeft="350dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:background="#F44336"
         app:srcCompat="@drawable/sign_in" />
 
