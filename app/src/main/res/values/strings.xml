@@ -13,4 +13,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="title_planetas">Planetas</string>
+    <string name="title_maps">Maps</string>
+    <string name="title_foto">Foto</string>
+    <string name="title_movies">Películas</string>
+
 </resources>

@@ -18,9 +18,10 @@
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/activity_galeria.xml" value="0.26510416666666664" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/activity_googlemaps.xml" value="0.22" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/activity_movie.xml" value="0.25" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/activity_planetas.xml" value="0.2" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/activity_principal_pantalla.xml" value="0.26510416666666664" />
-        <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/activity_principalpantalla.xml" value="0.22" />
+        <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/activity_principalpantalla.xml" value="0.2" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/activity_registro.xml" value="0.22" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/app_bar_drawer_inicio.xml" value="0.26510416666666664" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/content_drawer_inicio.xml" value="0.26510416666666664" />
@@ -28,6 +29,7 @@
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/fragment_slideshow.xml" value="0.26510416666666664" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/galeria_layout_foto.xml" value="0.17008196721311475" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/layout_foto.xml" value="0.26510416666666664" />
+        <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/movie_item.xml" value="0.22" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/nav_header_drawer_inicio.xml" value="0.26510416666666664" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/planetas_layout_listaplanetas.xml" value="0.25" />
         <entry key="..\:/Users/HACC/AndroidStudioProjects/LoginJava/app/src/main/res/layout/singleview.xml" value="0.2" />

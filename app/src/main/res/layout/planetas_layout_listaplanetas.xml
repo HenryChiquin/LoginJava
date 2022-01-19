@@ -49,7 +49,7 @@
 
                     <TextView
                         android:id="@+id/nombretxt"
-                        android:layout_width="166dp"
+                        android:layout_width="245dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:text="@string/app_name"
@@ -58,7 +58,7 @@
 
                     <TextView
                         android:id="@+id/idtxt"
-                        android:layout_width="185dp"
+                        android:layout_width="92dp"
                         android:layout_height="wrap_content"
                         android:text="@string/app_name"
                         android:textAlignment="textEnd"

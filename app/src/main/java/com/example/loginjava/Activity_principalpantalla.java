@@ -32,12 +32,11 @@ public class Activity_principalpantalla extends AppCompatActivity {
 
     TextView textViewUsuario,emailTxt;
     private Switch swCerrarSesion;
-    private ImageView imgVCerrrSesion;
     private ImageButton imgBtnOffSesion;
     private ListView lvMenuPrincipal;
     private GoogleApiClient googleApiClient;
 
-    private CardView cardViewUniverso,cardViewMaps,cardViewCamera;
+    private CardView cardViewUniverso,cardViewMaps,cardViewCamera, cardViewMovie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +44,7 @@ public class Activity_principalpantalla extends AppCompatActivity {
         cardViewUniverso = findViewById(R.id.cardViewUniverso);
         cardViewMaps = findViewById(R.id.cardViewMaps);
         cardViewCamera = findViewById(R.id.cardViewCamera);
+        cardViewMovie = findViewById(R.id.cardViewMovies);
 
         swCerrarSesion = findViewById(R.id.swCerrarSesion);
 
@@ -55,6 +55,8 @@ public class Activity_principalpantalla extends AppCompatActivity {
         cardViewUniverso.setOnClickListener(View -> getUniverso());
         cardViewMaps.setOnClickListener(View -> getMaps());
         cardViewCamera.setOnClickListener(View -> getCamera());
+        cardViewMovie.setOnClickListener(View -> getMovie());
+
         getUserProfile();
         swCerrarSesion.setOnClickListener(view -> {
             if(view.getId() == R.id.swCerrarSesion){
@@ -78,6 +80,10 @@ public class Activity_principalpantalla extends AppCompatActivity {
     public void getCamera(){
         Intent intCamera = new Intent(getApplicationContext(), Activity_Camera.class);
         startActivity(intCamera);
+    }
+    public void getMovie(){
+        Intent intMovie = new Intent(getApplicationContext(), Activity_movie.class);
+        startActivity(intMovie);
     }
 
     public void getUserProfile() {
