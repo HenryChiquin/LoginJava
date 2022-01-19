@@ -2,11 +2,13 @@ package com.example.loginjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.example.loginjava.Api.serviceApi;
 import com.example.loginjava.Util.conectionRetrofit;
@@ -30,6 +32,7 @@ public class Activity_planetas extends AppCompatActivity {
 
     private ListView lv1Planetas;
     private ImageView imgClosePlanetas;
+    private ProgressBar prBcargarPlanetas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class Activity_planetas extends AppCompatActivity {
         //List view CAJA
         lv1Planetas = findViewById(R.id.lvMenuPrincipal);
         imgClosePlanetas = findViewById(R.id.imgCloseUniverso);
+        prBcargarPlanetas = findViewById(R.id.prBcargarPlanetas);
+
         imgClosePlanetas.setOnClickListener(view -> {
             onBackPressed();
         });
@@ -76,8 +81,9 @@ public class Activity_planetas extends AppCompatActivity {
                     //List Array
                     ArrayList<Planetas> olistaPlanetas = listPlanetas.getItems();
                     //create adapter
-                    adapterPlanet oAdapterPlanet = new adapterPlanet(olistaPlanetas,Activity_planetas.this,R.layout.singleview);
+                    adapterPlanet oAdapterPlanet = new adapterPlanet(olistaPlanetas,Activity_planetas.this,R.layout.planetas_layout_listaplanetas);
                     lv1Planetas.setAdapter(oAdapterPlanet);
+                    prBcargarPlanetas.setVisibility(View.GONE);
                 }
                 @Override
                 public void onFailure(Call<listadoPlanetas> call, Throwable t) {

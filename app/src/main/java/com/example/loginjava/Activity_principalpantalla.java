@@ -45,7 +45,8 @@ public class Activity_principalpantalla extends AppCompatActivity {
         cardViewUniverso = findViewById(R.id.cardViewUniverso);
         cardViewMaps = findViewById(R.id.cardViewMaps);
         cardViewCamera = findViewById(R.id.cardViewCamera);
-        imgVCerrrSesion = findViewById(R.id.imageViewCerrarSesion);
+
+        swCerrarSesion = findViewById(R.id.swCerrarSesion);
 
         textViewUsuario = findViewById(R.id.tvUsuario);
         emailTxt = findViewById(R.id.emailtxt);
@@ -55,7 +56,14 @@ public class Activity_principalpantalla extends AppCompatActivity {
         cardViewMaps.setOnClickListener(View -> getMaps());
         cardViewCamera.setOnClickListener(View -> getCamera());
         getUserProfile();
-        imgVCerrrSesion.setOnClickListener(view -> cerrarSesion());
+        swCerrarSesion.setOnClickListener(view -> {
+            if(view.getId() == R.id.swCerrarSesion){
+                if(!swCerrarSesion.isChecked()){
+                    cerrarSesion();
+                    return;
+                }
+            }
+        });
     }
 
 

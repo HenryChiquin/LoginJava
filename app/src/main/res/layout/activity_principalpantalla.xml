@@ -11,6 +11,9 @@
         android:id="@+id/tvBienvenido"
         android:layout_width="wrap_content"
         android:layout_height="180dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:text="¡Bienvenido!"
@@ -18,22 +21,27 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/imageViewCerrarSesion"
-        android:layout_width="31dp"
-        android:layout_height="34dp"
+    <Switch
+        android:id="@+id/swCerrarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="350dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:background="#F44336"
-        app:srcCompat="@drawable/sign_in" />
+        android:checked="true"
+        android:text=""
+        android:textOn="Cerrar sesion"
+        android:thumbTint="#FFFFFF" />
 
     <TextView
         android:id="@+id/tvUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="100dp"
         android:text="Usuario"
@@ -45,6 +53,9 @@
         android:id="@+id/emailtxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="130dp"
         android:text="Email"
@@ -56,10 +67,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tvBienvenido"
-        android:rowCount="3"
-        android:columnCount="2">
+        android:columnCount="2"
+        android:rowCount="3">
 
         <androidx.cardview.widget.CardView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
             android:id="@+id/cardViewUniverso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,6 +110,8 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
             android:id="@+id/cardViewMaps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,7 +121,7 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="#FBFBFB"
+            app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
 
@@ -126,7 +141,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MAPS"
+                    android:text="Maps"
                     android:textAlignment="center"
                     android:textColor="#504F4F"
                     android:textStyle="bold" />
@@ -135,6 +150,8 @@
 
 
         <androidx.cardview.widget.CardView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
             android:id="@+id/cardViewCamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -164,7 +181,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="FOTO"
+                    android:text="Foto"
                     android:textAlignment="center"
                     android:textColor="#504F4F"
                     android:textStyle="bold" />

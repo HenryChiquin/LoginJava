@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -42,7 +41,7 @@ public class Activity_galeria extends AppCompatActivity {
         @NonNull
         @Override
         public adaptadorfotosholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new adaptadorfotosholder(getLayoutInflater().inflate(R.layout.layout_foto,parent,false));
+            return new adaptadorfotosholder(getLayoutInflater().inflate(R.layout.galeria_layout_foto,parent,false));
         }
 
         @Override
